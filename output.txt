@@ -1,0 +1,4 @@
+Scrape complete at 2026-04-03 11:28:23
+Total Updated: 160
+New Startups: 13
+Growing Startups: 6

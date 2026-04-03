@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Intelligence - Data-Driven Market Insights</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(8px); 
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-900 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2 rounded-lg shadow-lg shadow-indigo-200">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h1 class="text-xl font-black text-slate-800 tracking-tight">Startup<span class="text-indigo-600">Intelligence</span></h1>
+            </div>
+            <button id="refresh-btn" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all hover:shadow-lg flex items-center space-x-2">
+                <svg id="refresh-spinner" class="hidden animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                <span>Run Intelligence Scrape</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+        
+        <!-- Strategy Recommendation Banner -->
+        <section id="recommendation-banner" class="animate-fade-in">
+            <div class="bg-gradient-to-r from-indigo-600 to-violet-700 rounded-2xl p-8 text-white shadow-xl shadow-indigo-200/50">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
+                    <div class="max-w-2xl">
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase">Data-Driven Recommendation</span>
+                        <h2 id="strategy-recommendation" class="text-2xl font-bold mt-4 leading-tight italic opacity-80">Analyzing market data to highlight your next build...</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Insights Grid -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Opportunity Detection Card -->
+            <div class="glass-card rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="p-2 bg-emerald-100 text-emerald-700 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-800">Underserved Opportunities</h2>
+                </div>
+                <div id="opportunities-list" class="space-y-4">
+                    <p class="text-slate-500 italic">No historical data found.</p>
+                </div>
+            </div>
+
+            <!-- Trending Categories Card -->
+            <div class="glass-card rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="p-2 bg-amber-100 text-amber-700 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.5-7 3 3 3 6 3 9-1.144-.144-2.144-.144-3 0 0 0 .5-1 1.5-1.5 2 2 4 4 4 8z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-800">Market Hotspots</h2>
+                </div>
+                <div id="trends-list" class="space-y-4">
+                    <p class="text-slate-500 italic">Trends will appear here.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Category Stats Grid -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Top Market Categories</h2>
+            <div id="categories-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Category Cards go here -->
+            </div>
+        </section>
+
+        <!-- Startup Listing Table -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
+                <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Verified Marketplace Intelligence</h2>
+                <!-- Global Search -->
+                <div class="relative w-full md:w-80">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-4 w-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input type="text" id="search-input" placeholder="Search startups or categories..." class="block w-full pl-10 pr-3 py-2 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:placeholder-slate-300 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition">
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <table class="min-w-full divide-y divide-slate-200">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-widest">Startup</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-widest">Category</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-widest">Description</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-widest text-right">MRR</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-widest">Source</th>
+                        </tr>
+                    </thead>
+                    <tbody id="startup-list" class="bg-white divide-y divide-slate-100">
+                        <!-- Startup Rows go here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Category View -->
+    <div id="category-modal" class="hidden fixed inset-0 z-[60] overflow-y-auto px-4 py-6 sm:px-0">
+        <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="relative bg-white rounded-3xl max-w-4xl mx-auto shadow-2xl animate-fade-in overflow-hidden">
+            <!-- Modal Header -->
+            <div class="bg-indigo-600 px-8 py-6 text-white flex justify-between items-center">
+                <div>
+                    <h3 id="modal-title" class="text-2xl font-bold">Category Market Dive</h3>
+                    <p id="modal-subtitle" class="text-indigo-100 text-sm mt-1">Full analysis of the identified market segment.</p>
+                </div>
+                <button onclick="closeModal()" class="text-white hover:bg-white/20 p-2 rounded-full transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <!-- Modal Body -->
+            <div class="p-8 space-y-6">
+                <div id="modal-content" class="space-y-6">
+                    <!-- Dynamic List -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 border-t border-slate-200 text-center">
+        <p class="text-slate-500 text-sm font-medium">Startup Intelligence Engine v1.0 — Verified Market Research Automation</p>
+    </footer>
+
+    <!-- Frontend Logic -->
+    <script>
+        let allStartups = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDashboard();
+
+            // Refresh Logic
+            document.getElementById('refresh-btn').addEventListener('click', async () => {
+                const btn = document.getElementById('refresh-btn');
+                const spinner = document.getElementById('refresh-spinner');
+                
+                btn.disabled = true;
+                spinner.classList.remove('hidden');
+                btn.querySelector('span').innerText = "Running Final Scrape...";
+
+                try {
+                    const response = await fetch('/api/scrape', { method: 'POST' });
+                    const results = await response.json();
+                    if (results.error) alert("Scrape Error: " + results.error);
+                    else await loadDashboard();
+                } catch (e) {
+                    console.error("Scrape failed:", e);
+                } finally {
+                    btn.disabled = false;
+                    spinner.classList.add('hidden');
+                    btn.querySelector('span').innerText = "Run Intelligence Scrape";
+                }
+            });
+
+            // Search Logic
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const filtered = allStartups.filter(s => 
+                    s.name.toLowerCase().includes(query) || 
+                    s.category.toLowerCase().includes(query) ||
+                    s.description.toLowerCase().includes(query)
+                );
+                renderStartups(filtered);
+            });
+        });
+
+        async function loadDashboard() {
+            const [insightsRes, startupsRes] = await Promise.all([
+                fetch('/api/insights'),
+                fetch('/api/startups')
+            ]);
+            
+            const insights = await insightsRes.json();
+            allStartups = await startupsRes.json();
+
+            if (!insights.error) renderInsights(insights);
+            renderStartups(allStartups);
+        }
+
+        function renderInsights(data) {
+            // Recommendation
+            document.getElementById('strategy-recommendation').innerHTML = data.recommendation.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+
+            // Opportunities
+            document.getElementById('opportunities-list').innerHTML = data.opportunities.map(o => `
+                <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100 group hover:shadow-sm transition cursor-pointer" onclick="openCategoryModal('${o.category}')">
+                    <h4 class="font-bold text-emerald-800">${o.category} Market</h4>
+                    <p class="text-sm text-emerald-700 mt-1">Avg MRR: $${o.avg_mrr.toLocaleString()} • ${o.count} identified competitors.</p>
+                </div>
+            `).join('') || '<p class="text-slate-500 italic">No gaps detected.</p>';
+
+            // Trends
+            document.getElementById('trends-list').innerHTML = data.trends.map(t => `
+                <div class="p-4 bg-amber-50 rounded-xl border border-amber-100">
+                    <p class="text-sm text-amber-800 font-medium">${t}</p>
+                </div>
+            `).join('') || '<p class="text-slate-500 italic">No trends yet.</p>';
+
+            // Categories Grid
+            const grid = document.getElementById('categories-grid');
+            grid.innerHTML = Object.entries(data.categories).map(([name, stats]) => `
+                <div onclick="openCategoryModal('${name}')" class="cursor-pointer group bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-indigo-400 transition-all hover:shadow-lg hover:-translate-y-1">
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest group-hover:text-indigo-600 transition">${name}</h3>
+                    <p class="text-2xl font-bold text-slate-900 mt-2">$${stats.avg_mrr.toLocaleString()}</p>
+                    <p class="text-[11px] text-slate-500 mt-1 font-semibold">Avg MRR • ${stats.count} Projects</p>
+                </div>
+            `).join('');
+        }
+
+        function renderStartups(startups) {
+            const list = document.getElementById('startup-list');
+            list.innerHTML = startups.map(s => `
+                <tr class="group hover:bg-slate-50/50 transition">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <a href="${s.url}" target="_blank" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 flex items-center">
+                            ${s.name}
+                            <svg class="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-[10px] font-black rounded-md uppercase tracking-tighter bg-slate-100 text-slate-600">
+                            ${s.category}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-slate-600 max-w-xs truncate">${s.description}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-black text-slate-900 text-right">$${s.mrr.toLocaleString()}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 py-1 text-[10px] font-bold rounded-md ${s.source.includes('Reddit') ? 'bg-orange-100 text-orange-700' : 'bg-emerald-100 text-emerald-700'}">
+                            ${s.source}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openCategoryModal(category) {
+            const modal = document.getElementById('category-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            title.innerText = `${category} Market Intelligence`;
+            const filtered = allStartups.filter(s => s.category === category);
+            
+            content.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${filtered.map(s => `
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 hover:border-indigo-300 transition-all hover:bg-white group cursor-pointer" onclick="window.open('${s.url}', '_blank')">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-bold text-slate-900 group-hover:text-indigo-600 transition">${s.name}</h4>
+                                <span class="text-sm font-black text-slate-800">$${s.mrr.toLocaleString()}</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-2 line-clamp-2">${s.description}</p>
+                            <div class="mt-4 flex items-center space-x-2">
+                                 <span class="text-[9px] font-bold bg-white px-2 py-0.5 rounded border border-slate-200 text-slate-500 uppercase">${s.source}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('category-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
